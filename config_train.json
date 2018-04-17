@@ -1,0 +1,15 @@
+{
+  "gpuID": "1",
+  "studyID": "31",
+  "update": false,
+  "lr": 0.0005,
+  "batch_size": 512,
+  "epochs": 10,
+  "use_w2v": true,
+  "use_u2v": true,
+  "use_timestamps": true,
+  "w2v_size": 200,
+  "u2v_size": 30,
+  "timestamp_size": 4,
+  "maxlen": 100
+}
