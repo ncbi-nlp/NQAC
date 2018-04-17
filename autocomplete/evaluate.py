@@ -165,23 +165,23 @@ def MPCEval(prefixes, bg):
     print("MRR: "+str(total)+", PMRR: "+str(total_partial))
 
 config = json.load(open("config_evaluate.json"))
-os.environ['CUDA_VISIBLE_DEVICES'] = config["CUDA_VISIBLE_DEVICES"]
+os.environ['CUDA_VISIBLE_DEVICES'] = config["gpuID"]
 
 #### PARAMS
 print("Loading params")
 modelname = config["modelname"]
 study = config["study"]
-maxlen = config["maxlen"]
+maxlen = 100
 epoch = config["epoch"]
 sample = config["sample"]
 
 # Some various setups
 use_w2v = config["use_w2v"]
-w2v_size = config["w2v_size"]
+w2v_size = 200
 use_u2v = config["use_u2v"]
-u2v_size = config["u2v_size"]
+u2v_size = 30
 use_timestamps = config["use_timestamps"]
-timestamp_size = config["timestamp_size"]
+timestamp_size = 4
 print("Done")
 ############
 
@@ -206,16 +206,10 @@ INC = pickle.load(open("./pkl/inc_"+study+".pkl", 'rb'))
 char_indices = pickle.load(open("./pkl/char_indices_"+study,'rb'))
 indices_char = pickle.load(open("./pkl/indices_char_"+study,'rb'))
 if use_w2v:
-    if study == "aol":
-        w2v = gensim.models.KeyedVectors.load_word2vec_format('vectors/GoogleNews-vectors-negative300.bin', binary=True)
-    else:
-        w2v = gensim.models.KeyedVectors.load_word2vec_format('vectors/PubMed-w2v.bin', binary=True)
+    w2v = gensim.models.KeyedVectors.load_word2vec_format('vectors/GoogleNews-vectors-negative300.bin', binary=True)
 else: w2v = {}
 if use_u2v:
-    if study == "aol":
-        u2v = gensim.models.Doc2Vec.load('vectors/user2vec_d30_2.model')
-    else:
-        u2v = gensim.models.Doc2Vec.load('vectors/user2vec_pubmed2.model')
+    u2v = gensim.models.Doc2Vec.load('vectors/user2vec_d30_2.model')
 else: u2v = {}
 print("Done.")
 

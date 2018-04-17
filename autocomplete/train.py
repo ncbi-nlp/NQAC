@@ -21,7 +21,7 @@ os.environ['CUDA_VISIBLE_DEVICES'] = config["gpuID"]
 
 #### PARAMS
 studyID = config["studyID"]
-maxlen = config["maxlen"]
+maxlen = 100
 update = config["update"]
 lr = config["lr"]
 batch_size = config["batch_size"]
@@ -29,11 +29,11 @@ epochs = config["epochs"]
 
 # Some various setups
 use_w2v = config["use_w2v"]
-w2v_size = config["w2v_size"]
+w2v_size = 200
 use_u2v = config["use_u2v"]
-u2v_size = config["u2v_size"]
+u2v_size = 30
 use_timestamps = config["use_timestamps"]
-timestamp_size = config["timestamp_size"]
+timestamp_size = 4
 ############
 
 path = "queries/train.txt"
